@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <item name="tv_title_center" type="id" />
+    <item name="ibtn_title_left" type="id" />
+    <item name="toolbar" type="id" />
+</resources>
