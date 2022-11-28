@@ -82,7 +82,7 @@ class LineChart1Activity : BaseActivity() {
             this.setPinchZoom(true)
             this.maxHighlightDistance = 300f
             this.setVisibleXRangeMaximum(10.0f)
-            this.animateXY(2000,2000)
+            this.animateY(2000)
             // x周数据
             this.xAxis.valueFormatter = object :IAxisValueFormatter{
                 override fun getFormattedValue(value: Float, axis: AxisBase?): String {

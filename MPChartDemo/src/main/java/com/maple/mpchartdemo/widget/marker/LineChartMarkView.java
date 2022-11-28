@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.RectF;
@@ -42,6 +43,7 @@ public class LineChartMarkView extends MarkerView {
 
     private IAxisValueFormatter valueFormatter;
     private Context context;
+    private int color = Color.parseColor("#f69c9f");
 
     public LineChartMarkView(Context context, IAxisValueFormatter valueFormatter2) {
         super(context, R.layout.marker_chart);
@@ -138,11 +140,11 @@ public class LineChartMarkView extends MarkerView {
         Paint paint = new Paint();
         paint.setStyle(Paint.Style.FILL);
         paint.setAntiAlias(true);
-        paint.setColor(-1);
+        paint.setColor(color);
         Paint paint2 = new Paint();
         paint2.setStyle(Paint.Style.FILL);
         paint2.setAntiAlias(true);
-        paint2.setColor(-1);
+        paint2.setColor(color);
         float width = (float) getWidth();
         float height = (float) getHeight();
         int save = canvas.save();
