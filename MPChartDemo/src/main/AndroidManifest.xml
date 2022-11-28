@@ -17,6 +17,9 @@
             android:name=".ui.LineChart1Activity"
             android:exported="false" />
         <activity
+            android:name=".ui.BarChart1Activity"
+            android:exported="false" />
+        <activity
             android:name=".ui.SplashActivity"
             android:exported="true"
             android:theme="@style/SplashTheme" >

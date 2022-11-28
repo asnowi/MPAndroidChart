@@ -2,7 +2,6 @@ package com.maple.mpchartdemo.ui
 
 import android.content.Context
 import android.graphics.Color
-import android.graphics.Paint
 import android.os.Bundle
 import com.github.mikephil.charting.charts.LineChart
 import com.github.mikephil.charting.components.*

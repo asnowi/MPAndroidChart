@@ -17,7 +17,7 @@ class HomeActivity : BaseActivity() {
 
     private val list: MutableList<String> = mutableListOf<String>().apply {
         this.add("折线图1")
-        this.add("2")
+        this.add("柱状图1")
         this.add("3")
     }
 
@@ -31,13 +31,16 @@ class HomeActivity : BaseActivity() {
             }
             this.adapter = ArrayAdapter<String>(this@HomeActivity,R.layout.item_home,R.id.tv_name,list)
         }
-        openItemActivity(LineChart1Activity::class.java,list.get(0))
+        // openItemActivity(LineChart1Activity::class.java,list.get(0))
     }
 
     private fun onItemUI(position: Int) {
         when(position) {
             0 -> {
                 openItemActivity(LineChart1Activity::class.java,list.get(position))
+            }
+            1 -> {
+                openItemActivity(BarChart1Activity::class.java,list.get(position))
             }
             else -> {
                 ToastUtils.showToast("<-${position}->")
