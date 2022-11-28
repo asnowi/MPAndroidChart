@@ -2,12 +2,10 @@ package com.maple.mpchartdemo.ui
 
 import android.content.Context
 import android.graphics.Color
+import android.graphics.Paint
 import android.os.Bundle
 import com.github.mikephil.charting.charts.LineChart
-import com.github.mikephil.charting.components.AxisBase
-import com.github.mikephil.charting.components.Description
-import com.github.mikephil.charting.components.XAxis
-import com.github.mikephil.charting.components.YAxis
+import com.github.mikephil.charting.components.*
 import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.data.LineData
 import com.github.mikephil.charting.data.LineDataSet
@@ -48,8 +46,9 @@ class LineChart1Activity : BaseActivity() {
         // 描述信息
         val description = Description().apply {
             this.text = "图表描述"
-            this.textColor = Color.CYAN
-            this.yOffset = 20.0f
+            this.textColor = Color.RED
+            this.yOffset = 10.0f
+            this.isEnabled = false
         }
         chart.apply {
             this.description = description
@@ -62,9 +61,22 @@ class LineChart1Activity : BaseActivity() {
             this.axisRight.isEnabled = false
             // 不显示图例
             val legend = chart.legend
-            legend.isEnabled = false
+            legend.isEnabled = true
+            // 设置legend显示位置
+            legend.verticalAlignment = Legend.LegendVerticalAlignment.TOP
+            // 显示legend显示的排列方法
+            legend.orientation = Legend.LegendOrientation.HORIZONTAL
+            //是否绘制在图表里
+            legend.setDrawInside(false)
+            // legend显示形状
+            legend.form = Legend.LegendForm.SQUARE
+            legend.textSize = 10.0f
+            legend.textColor = Color.BLACK
             // 向左偏移15dp，抵消y轴向右偏移的30dp
             this.extraLeftOffset = -15.0f
+            // 向上偏移10dp 用来显示 legend
+            this.extraTopOffset = 10.0f
+
             //是否可以根据最大值和最小值自动缩放--是
             this.isAutoScaleMinMaxEnabled = true
             this.isDragEnabled = true
@@ -101,7 +113,7 @@ class LineChart1Activity : BaseActivity() {
             this.textSize = 10.0f
             this.gridColor = Color.parseColor("#30888888")
             // 设置x轴数据偏移量
-            this.yOffset = -12.0f
+            this.yOffset = 4.0f
         }
 
         // YAxis
@@ -181,7 +193,6 @@ class LineChart1Activity : BaseActivity() {
                 lineDataSet1.setCircleColor(Color.parseColor("#4e72b8"))
                 // 设置填充色
                 lineDataSet1.fillColor = Color.parseColor("#4e72b8")
-
                 // 设置数据2
                 lineDataSet2 = LineDataSet(values2,"线222")
                 // 设置曲线颜色

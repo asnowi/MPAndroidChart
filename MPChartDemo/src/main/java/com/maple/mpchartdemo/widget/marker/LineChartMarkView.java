@@ -11,6 +11,8 @@ import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.util.Log;
 import android.util.TypedValue;
+import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.github.mikephil.charting.charts.Chart;
@@ -35,6 +37,7 @@ public class LineChartMarkView extends MarkerView {
     private Bitmap bitmapForDot;
     private int bitmapHeight;
     private int bitmapWidth;
+    private LinearLayout llContent;
     private TextView tvContent;
 
     private IAxisValueFormatter valueFormatter;
@@ -44,6 +47,7 @@ public class LineChartMarkView extends MarkerView {
         super(context, R.layout.marker_chart);
         this.context = context;
         this.valueFormatter = valueFormatter2;
+        this.llContent = findViewById(R.id.ll_content);
         this.tvContent = findViewById(R.id.tv_content);
 
         Bitmap bitmap = getBitmap(context, R.drawable.shape_marker_point);
@@ -102,6 +106,17 @@ public class LineChartMarkView extends MarkerView {
 //            }
 //        }
 
+        LogUtils.logGGQ("======entry======>>>" + entry.toString());
+        LogUtils.logGGQ("======highlight======>>>" + highlight.toString());
+
+        Chart chartView = getChartView();
+        if(chartView != null) {
+            if(chartView instanceof LineChart) {
+                List dataSets = ((LineChart) chartView).getLineData().getDataSets();
+                LineDataSet lineDataSet = (LineDataSet)dataSets.get(highlight.getDataSetIndex());
+                tvContent.setTextColor(lineDataSet.getColor());
+            }
+        }
         this.tvContent.setText(String.valueOf(entry.getY()));
         super.refreshContent(entry, highlight);
     }
