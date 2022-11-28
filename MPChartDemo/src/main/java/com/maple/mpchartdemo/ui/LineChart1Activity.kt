@@ -125,54 +125,98 @@ class LineChart1Activity : BaseActivity() {
 
     private fun setData(json: String) {
         chart?.let { chart ->
-            val lineDataSet: LineDataSet
-            val values: MutableList<Entry> = mutableListOf()
-            values.add(Entry(0.0f,3.0f))
-            values.add(Entry(1.0f,6.0f))
-            values.add(Entry(2.0f,3.0f))
-            values.add(Entry(3.0f,2.0f))
-            values.add(Entry(4.0f,6.0f))
-            values.add(Entry(5.0f,5.0f))
-            values.add(Entry(6.0f,2.9f))
+            val lineDataSet1: LineDataSet
+            val values1: MutableList<Entry> = mutableListOf()
+            values1.add(Entry(0.0f,3.0f))
+            values1.add(Entry(1.0f,6.0f))
+            values1.add(Entry(2.0f,3.0f))
+            values1.add(Entry(3.0f,4.0f))
+            values1.add(Entry(4.0f,6.0f))
+            values1.add(Entry(5.0f,5.0f))
+            values1.add(Entry(6.0f,2.9f))
+
+            val lineDataSet2: LineDataSet
+            val values2: MutableList<Entry> = mutableListOf()
+            values2.add(Entry(0.0f,0.0f))
+            values2.add(Entry(1.0f,2.2f))
+            values2.add(Entry(2.0f,2.0f))
+            values2.add(Entry(3.0f,3.3f))
+            values2.add(Entry(4.0f,4.1f))
+            values2.add(Entry(5.0f,3.0f))
+            values2.add(Entry(6.0f,0.0f))
+
             if(chart.data != null && chart.data.dataSetCount > 0) {
                 // 刷新数据
-                lineDataSet = chart.data.getDataSetByIndex(0) as LineDataSet
-                lineDataSet.entries = values
+                lineDataSet1 = chart.data.getDataSetByIndex(0) as LineDataSet
+                lineDataSet1.entries = values1
+
+                lineDataSet2 = chart.data.getDataSetByIndex(1) as LineDataSet
+                lineDataSet2.entries = values2
+
                 chart.notifyDataSetChanged()
             } else {
-                // 设置数据
-                lineDataSet = LineDataSet(values,"线111")
+                // 设置数据1
+                lineDataSet1 = LineDataSet(values1,"线111")
                 // 设置曲线颜色
-                lineDataSet.color = Color.parseColor("#4e72b8")
+                lineDataSet1.color = Color.parseColor("#4e72b8")
                 //设置折线图填充
-                lineDataSet.setDrawFilled(true)
-                lineDataSet.formLineWidth = 1.0f
-                lineDataSet.formSize = 12.0f
+                lineDataSet1.setDrawFilled(true)
+                lineDataSet1.formLineWidth = 1.0f
+                lineDataSet1.formSize = 12.0f
                 // //设置曲线展示为圆滑曲线（如果不设置则默认折线）
-                lineDataSet.mode = LineDataSet.Mode.CUBIC_BEZIER
+                lineDataSet1.mode = LineDataSet.Mode.CUBIC_BEZIER
                 // 显示坐标点的小圆点
-                lineDataSet.setDrawCircles(true)
+                lineDataSet1.setDrawCircles(true)
                 // 显示坐标点的数据
-                lineDataSet.setDrawValues(true)
+                lineDataSet1.setDrawValues(true)
                 // 显示定位线
-                lineDataSet.isHighlightEnabled = true
+                lineDataSet1.isHighlightEnabled = true
                 //
-                lineDataSet.lineWidth = 3.0f
-                lineDataSet.valueTextSize = 10.0f
-                lineDataSet.valueTextColor = Color.parseColor("#4e72b8")
-                lineDataSet.circleRadius = 5.0f
+                lineDataSet1.lineWidth = 3.0f
+                lineDataSet1.valueTextSize = 10.0f
+                lineDataSet1.valueTextColor = Color.parseColor("#4e72b8")
+                lineDataSet1.circleRadius = 5.0f
                 //设置曲线值的圆点是实心还是空心
-                lineDataSet.setDrawCircleHole(true)
-                lineDataSet.setCircleColor(Color.parseColor("#4e72b8"))
+                lineDataSet1.setDrawCircleHole(true)
+                lineDataSet1.setCircleColor(Color.parseColor("#4e72b8"))
+                // 设置填充色
+                lineDataSet1.fillColor = Color.parseColor("#4e72b8")
 
-                val data: LineData = LineData(lineDataSet)
+                // 设置数据2
+                lineDataSet2 = LineDataSet(values2,"线222")
+                // 设置曲线颜色
+                lineDataSet2.color = Color.parseColor("#1d953f")
+                //设置折线图填充
+                lineDataSet2.setDrawFilled(true)
+                lineDataSet2.formLineWidth = 1.0f
+                lineDataSet2.formSize = 12.0f
+                // //设置曲线展示为圆滑曲线（如果不设置则默认折线）
+                lineDataSet2.mode = LineDataSet.Mode.CUBIC_BEZIER
+                // 显示坐标点的小圆点
+                lineDataSet2.setDrawCircles(true)
+                // 显示坐标点的数据
+                lineDataSet2.setDrawValues(true)
+                // 显示定位线
+                lineDataSet2.isHighlightEnabled = true
+                //
+                lineDataSet2.lineWidth = 3.0f
+                lineDataSet2.valueTextSize = 10.0f
+                lineDataSet2.valueTextColor = Color.parseColor("#1d953f")
+                lineDataSet2.circleRadius = 5.0f
+                //设置曲线值的圆点是实心还是空心
+                lineDataSet2.setDrawCircleHole(true)
+                lineDataSet2.setCircleColor(Color.parseColor("#1d953f"))
+                // 设置填充色
+                lineDataSet2.fillColor = Color.parseColor("#1d953f")
+
+                val data: LineData = LineData(lineDataSet1,lineDataSet2)
                 chart.data = data
                 chart.invalidate()
             }
         }
     }
 
-    fun setCustomMarkerView(context: Context) {
+    private fun setCustomMarkerView(context: Context) {
         chart?.let { chart ->
             LineChartMarkView(context, chart.xAxis.valueFormatter).apply {
                 this.chartView = chart
