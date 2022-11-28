@@ -31,6 +31,7 @@ class HomeActivity : BaseActivity() {
             }
             this.adapter = ArrayAdapter<String>(this@HomeActivity,R.layout.item_home,R.id.tv_name,list)
         }
+        openItemActivity(LineChart1Activity::class.java,list.get(0))
     }
 
     private fun onItemUI(position: Int) {

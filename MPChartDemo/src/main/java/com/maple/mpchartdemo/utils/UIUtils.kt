@@ -26,5 +26,9 @@ class UIUtils {
         fun getSize(dp: Float): Int {
             return SizeUtils.dp2px(dp)
         }
+
+        fun getAssetsJson(name: String): String {
+            return ResourceUtils.readAssets2String(name)
+        }
     }
 }
