@@ -38,7 +38,7 @@ public class LineChartMarkView extends MarkerView {
     private int bitmapHeight;
     private int bitmapWidth;
     private LinearLayout llContent;
-    private TextView tvContent;
+    private TextView tvContent,tvDescribe;
 
     private IAxisValueFormatter valueFormatter;
     private Context context;
@@ -49,6 +49,7 @@ public class LineChartMarkView extends MarkerView {
         this.valueFormatter = valueFormatter2;
         this.llContent = findViewById(R.id.ll_content);
         this.tvContent = findViewById(R.id.tv_content);
+        this.tvDescribe = findViewById(R.id.tv_describe);
 
         Bitmap bitmap = getBitmap(context, R.drawable.shape_marker_point);
         this.bitmapForDot = bitmap;
@@ -118,6 +119,7 @@ public class LineChartMarkView extends MarkerView {
             }
         }
         this.tvContent.setText(String.valueOf(entry.getY()));
+        this.tvDescribe.setText(String.format("(%s:%s1)",entry.getX(),entry.getY()));
         super.refreshContent(entry, highlight);
     }
 
