@@ -69,9 +69,9 @@ class PieChart1Activity : BaseActivity() {
             //设置是否可以触摸
             this.setTouchEnabled(true)
             // 数据描述文本大小
-            this.setEntryLabelTextSize(10.0f)
+            this.setEntryLabelTextSize(8.0f)
             // 不显示 label
-            this.setDrawEntryLabels(false)
+            this.setDrawEntryLabels(true)
             // 数据描述文本颜色
             this.setEntryLabelColor(Color.GRAY)
             // 设置中心圆大小
