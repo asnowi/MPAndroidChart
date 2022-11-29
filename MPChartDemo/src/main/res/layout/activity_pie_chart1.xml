@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     android:background="@color/white"
-    tools:context=".ui.BarChart1Activity">
+    tools:context=".ui.PieChart1Activity">
 
     <include layout="@layout/include_title"/>
 
@@ -16,7 +17,7 @@
         android:background="@drawable/shape_chart_bg"
         android:orientation="vertical">
 
-        <com.maple.mpchartdemo.widget.roundBarChart.RoundBarChart
+        <com.github.mikephil.charting.charts.PieChart
             android:id="@+id/chart"
             android:layout_width="match_parent"
             android:layout_height="200dp" />

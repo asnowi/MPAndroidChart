@@ -86,7 +86,7 @@ class BarChart1Activity : BaseActivity() {
 
             this.setFitBars(true)
             //动画失效可能原因 1.添加混淆文件 2.先调用invalidate方法刷新数据
-            this.animateY(2000)
+            this.animateY(1000)
 
             this.xAxis.valueFormatter = object :ValueFormatter() {
                 override fun getFormattedValue(value: Float): String {

@@ -18,7 +18,7 @@ class HomeActivity : BaseActivity() {
     private val list: MutableList<String> = mutableListOf<String>().apply {
         this.add("折线图1")
         this.add("柱状图1")
-        this.add("3")
+        this.add("饼图1")
     }
 
     override fun getLayoutId(): Int = R.layout.activity_home
@@ -41,6 +41,9 @@ class HomeActivity : BaseActivity() {
             }
             1 -> {
                 openItemActivity(BarChart1Activity::class.java,list.get(position))
+            }
+            2 -> {
+                openItemActivity(PieChart1Activity::class.java,list.get(position))
             }
             else -> {
                 ToastUtils.showToast("<-${position}->")
