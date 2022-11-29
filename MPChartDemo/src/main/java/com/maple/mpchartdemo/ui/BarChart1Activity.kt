@@ -8,12 +8,13 @@ import com.github.mikephil.charting.components.*
 import com.github.mikephil.charting.data.BarData
 import com.github.mikephil.charting.data.BarDataSet
 import com.github.mikephil.charting.data.BarEntry
-import com.github.mikephil.charting.formatter.IAxisValueFormatter
-import com.github.mikephil.charting.utils.Fill
+import com.github.mikephil.charting.formatter.ValueFormatter
+import com.github.mikephil.charting.model.GradientColor
 import com.maple.mpchartdemo.R
 import com.maple.mpchartdemo.base.BaseActivity
 import com.maple.mpchartdemo.utils.UIUtils
 import com.maple.mpchartdemo.widget.marker.LineChartMarkView
+import com.maple.mpchartdemo.widget.roundBarChart.RoundBarChart
 
 
 class BarChart1Activity : BaseActivity() {
@@ -21,7 +22,7 @@ class BarChart1Activity : BaseActivity() {
     override fun uiTitle(): String = getBundle()?.getString("title")?:""
     override fun onUILeft() { onFinish() }
 
-    private var chart: BarChart? = null
+    private var chart: RoundBarChart? = null
     private val weekList: List<String> = arrayListOf("周一","周二","周三","周四","周五","周六","周日")
 
     override fun getLayoutId(): Int = R.layout.activity_bar_chart1
@@ -87,8 +88,9 @@ class BarChart1Activity : BaseActivity() {
             //动画失效可能原因 1.添加混淆文件 2.先调用invalidate方法刷新数据
             this.animateY(2000)
 
-            this.xAxis.valueFormatter = object :IAxisValueFormatter{
-                override fun getFormattedValue(value: Float, axis: AxisBase?): String {
+            this.xAxis.valueFormatter = object :ValueFormatter() {
+                override fun getFormattedValue(value: Float): String {
+                    // return super.getFormattedValue(value)
                     return weekList.get(value.toInt())
                 }
             }
@@ -163,7 +165,7 @@ class BarChart1Activity : BaseActivity() {
             if(chart.data != null && chart.data.dataSetCount > 0) {
                 // 刷新数据
                 barDataSet = chart.data.getDataSetByIndex(0) as BarDataSet
-                barDataSet.entries = values
+                barDataSet.values = values
 
                 chart.notifyDataSetChanged()
             } else {
@@ -181,16 +183,13 @@ class BarChart1Activity : BaseActivity() {
                 //
                 barDataSet.valueTextSize = 10.0f
                 barDataSet.valueTextColor = Color.parseColor("#4e72b8")
-                barDataSet.fills = arrayListOf(
-                    Fill(Color.parseColor("#afb4db"),Color.parseColor("#4e72b8")),
-                    Fill(Color.parseColor("#afb4db"),Color.parseColor("#4e72b8")),
-                    Fill(Color.parseColor("#afb4db"),Color.parseColor("#4e72b8")),
-                    Fill(Color.parseColor("#afb4db"),Color.parseColor("#4e72b8")),
-                    Fill(Color.parseColor("#afb4db"),Color.parseColor("#4e72b8")),
-                    Fill(Color.parseColor("#afb4db"),Color.parseColor("#4e72b8")),
-                    Fill(Color.parseColor("#afb4db"),Color.parseColor("#4e72b8")))
+                barDataSet.gradientColors = mutableListOf<GradientColor>().apply {
+                    values.forEach { _ ->
+                        add(GradientColor(Color.parseColor("#afb4db"),Color.parseColor("#4e72b8")))
+                    }
+                }
                 val data: BarData = BarData(barDataSet)
-                data.barWidth = 0.32f
+                data.barWidth = 0.25f
                 chart.data = data
                 chart.invalidate()
             }

@@ -9,6 +9,7 @@ import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.data.LineData
 import com.github.mikephil.charting.data.LineDataSet
 import com.github.mikephil.charting.formatter.IAxisValueFormatter
+import com.github.mikephil.charting.formatter.ValueFormatter
 import com.github.mikephil.charting.highlight.Highlight
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener
 import com.maple.mpchartdemo.R
@@ -84,8 +85,9 @@ class LineChart1Activity : BaseActivity() {
             this.setVisibleXRangeMaximum(10.0f)
             this.animateY(2000)
             // x周数据
-            this.xAxis.valueFormatter = object :IAxisValueFormatter{
-                override fun getFormattedValue(value: Float, axis: AxisBase?): String {
+            this.xAxis.valueFormatter = object : ValueFormatter() {
+                override fun getFormattedValue(value: Float): String {
+//                    return super.getFormattedValue(value)
                     return weekList.get(value.toInt())
                 }
             }
@@ -159,10 +161,9 @@ class LineChart1Activity : BaseActivity() {
             if(chart.data != null && chart.data.dataSetCount > 0) {
                 // 刷新数据
                 lineDataSet1 = chart.data.getDataSetByIndex(0) as LineDataSet
-                lineDataSet1.entries = values1
-
+                lineDataSet1.values = values1
                 lineDataSet2 = chart.data.getDataSetByIndex(1) as LineDataSet
-                lineDataSet2.entries = values2
+                lineDataSet2.values = values2
 
                 chart.notifyDataSetChanged()
             } else {

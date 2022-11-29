@@ -14,7 +14,7 @@
         android:background="@drawable/shape_chart_bg"
         android:orientation="vertical">
 
-        <com.github.mikephil.charting.charts.BarChart
+        <com.maple.mpchartdemo.widget.roundBarChart.RoundBarChart
             android:id="@+id/chart"
             android:layout_width="match_parent"
             android:layout_height="200dp" />
