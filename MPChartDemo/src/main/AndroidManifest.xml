@@ -23,6 +23,9 @@
             android:name=".ui.PieChart1Activity"
             android:exported="false" />
         <activity
+            android:name=".ui.PickerActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.SplashActivity"
             android:exported="true"
             android:theme="@style/SplashTheme">

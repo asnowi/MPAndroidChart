@@ -12,5 +12,8 @@
     <color name="line">#E9E9E9</color>
     <color name="trans">#00000000</color>
 
+    <color name="confirm">#304FFE</color>
+    <color name="cancel">#AAAAAA</color>
+
 
 </resources>

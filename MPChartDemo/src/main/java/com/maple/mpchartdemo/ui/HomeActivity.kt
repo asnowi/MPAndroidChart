@@ -19,6 +19,7 @@ class HomeActivity : BaseActivity() {
         this.add("折线图1")
         this.add("柱状图1")
         this.add("饼图1")
+        this.add("选择器")
     }
 
     override fun getLayoutId(): Int = R.layout.activity_home
@@ -44,6 +45,9 @@ class HomeActivity : BaseActivity() {
             }
             2 -> {
                 openItemActivity(PieChart1Activity::class.java,list.get(position))
+            }
+            3 -> {
+                openItemActivity(PickerActivity::class.java,list.get(position))
             }
             else -> {
                 ToastUtils.showToast("<-${position}->")
